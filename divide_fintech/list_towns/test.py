@@ -1,4 +1,5 @@
 import requests
+from time import sleep
 
 def unsortList():
     ret = set()
@@ -17,7 +18,7 @@ def getListTownsFromFile():
             line = file.readline()
             if not line:
                 break
-            lst.append(line)
+            lst.append(line[0:-1])
     return lst
 
 def createNewFile():
@@ -33,8 +34,6 @@ def get(town):
     response = requests.get('http://127.0.0.1:8000/check_town?town=' + town + '/')
     return response
 
-from time import sleep
-
 if __name__=="__main__":
     # file_name, town_list = createNewFile()
     town_list = getListTownsFromFile()
@@ -49,4 +48,4 @@ if __name__=="__main__":
                 k += 1
                 file.write(f'{key} : {value}\n')
             if (ind % 5000 == 0):
-                sleep(50)
+                sleep(30)
