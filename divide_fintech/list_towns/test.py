@@ -38,14 +38,11 @@ if __name__=="__main__":
     # file_name, town_list = createNewFile()
     town_list = getListTownsFromFile()
     ind = 0
-    k = 0
     with open("output.txt", "w", encoding="utf-8") as file:
         for town in town_list:
-
             answer = get(town)
             ind += 1
             for key, value in answer.json().items():
-                k += 1
                 file.write(f'{key} : {value}\n')
-            if (ind % 10000 == 0):
-                sleep(30)
+            if (ind % 7000 == 0):
+                sleep(50)
